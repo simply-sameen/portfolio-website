@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sameen Sardar S.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-deep:   #00674F;
+      --teal-mid:    #5BB19C;
+      --grey-light:  #D9D9D9;
+      --dark-bg:     #0B0B0B;
+      --dark-surface:#111111;
+      --dark-rule:   #1C1C1C;
+      --text-dim:    #484848;
+      --text-muted:  #888;
+      --white:       #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--dark-bg);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 620px;
+      background: linear-gradient(
+        105deg,
+        var(--teal-deep) 0%,
+        var(--teal-deep) 15%,
+        var(--teal-mid)  68%,
+        var(--grey-light) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* grain overlay */
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.22;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.2rem 3.5rem;
+    }
+
+    .logo-mark {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 5px;
+      width: 26px;
+      height: 26px;
+    }
+
+    .logo-mark span {
+      background: rgba(255,255,255,0.92);
+      border-radius: 3px;
+    }
+
+    .logo-mark span.empty {
+      background: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      font-weight: 400;
+      transition: color 0.18s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── HERO BODY ─── */
+    .hero-body {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 3.5rem 2rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(76px, 10.5vw, 148px);
+      font-weight: 300;
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 2.4rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+    }
+
+    .hero-statement {
+      font-family: 'Cormorant', serif;
+      font-style: italic;
+      font-size: clamp(19px, 2.4vw, 28px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.45;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-status {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.03em;
+      font-weight: 400;
+    }
+
+    .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .pulse::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      animation: ripple 2.4s infinite;
+    }
+
+    @keyframes ripple {
+      0%   { transform: scale(0.7); opacity: 0.8; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+
+    /* ─── HERO FOOTER ─── */
+    .hero-footer {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 3.5rem 2.8rem;
+    }
+
+    .scroll-cue {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.4);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .scroll-track {
+      width: 48px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-track::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.6);
+      animation: scanline 2s infinite ease-in-out;
+    }
+
+    @keyframes scanline {
+      0%   { left: -100%; }
+      100% { left:  100%; }
+    }
+
+    .wordmark {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: rgba(0, 40, 28, 0.55);
+    }
+
+    /* ─── WORK SECTION ─────────────────────────────── */
+    .section-work {
+      background: var(--dark-bg);
+      padding: 7rem 3.5rem 6rem;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 400;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--dark-rule);
+    }
+
+    .work-list {
+      list-style: none;
+    }
+
+    .work-entry {
+      display: grid;
+      grid-template-columns: 36px 1fr auto;
+      align-items: baseline;
+      gap: 0 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--dark-rule);
+      cursor: pointer;
+      transition: opacity 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .work-entry:last-child {
+      border-bottom: 1px solid var(--dark-rule);
+    }
+
+    .work-entry:hover { opacity: 0.55; }
+
+    .work-num {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      font-weight: 400;
+      padding-top: 6px;
+    }
+
+    .work-center {}
+
+    .work-title {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(32px, 4.5vw, 60px);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .work-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .work-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .work-type {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .work-year {
+      font-size: 11px;
+      color: #2d2d2d;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* ─── ABOUT STRIP ─────────────────────────────── */
+    .section-about {
+      background: var(--dark-surface);
+      padding: 6rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      border-top: 1px solid var(--dark-rule);
+    }
+
+    .about-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+    }
+
+    .about-bio {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(22px, 2.8vw, 34px);
+      font-weight: 300;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .about-bio em {
+      font-style: italic;
+      color: var(--white);
+    }
+
+    .about-facts {
+      padding-top: 2.2rem;
+    }
+
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-top: 1px solid var(--dark-rule);
+      font-size: 13px;
+    }
+
+    .fact-row:last-child {
+      border-bottom: 1px solid var(--dark-rule);
+    }
+
+    .fact-key {
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .fact-val {
+      color: rgba(255,255,255,0.8);
+      text-align: right;
+    }
+
+    /* ─── NOW BANNER ─────────────────────────────── */
+    .section-now {
+      background: var(--teal-deep);
+      padding: 4rem 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .now-left {}
+
+    .now-tag {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.8rem;
+    }
+
+    .now-line {
+      font-family: 'Cormorant', serif;
+      font-style: italic;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.3;
+    }
+
+    .now-cta {
+      flex-shrink: 0;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.18s;
+    }
+
+    .now-cta::after {
+      content: '→';
+      font-size: 16px;
+    }
+
+    .now-cta:hover { color: var(--white); }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav             { padding: 1.6rem 1.6rem; }
+      .hero-body       { padding: 0 1.6rem 2rem; }
+      .hero-footer     { padding: 0 1.6rem 2rem; }
+      .section-work    { padding: 5rem 1.6rem 4rem; }
+      .work-right      { display: none; }
+      .section-about   { grid-template-columns: 1fr; padding: 4rem 1.6rem; gap: 2rem; }
+      .section-now     { flex-direction: column; align-items: flex-start; padding: 3rem 1.6rem; }
+      .nav-links li:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-grain"></div>
+
+  <nav class="nav">
+    <div class="logo-mark" aria-label="Logo">
+      <span></span>
+      <span></span>
+      <span class="empty"></span>
+      <span></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="/now">Now</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-body">
+    <p class="hero-eyebrow">Founder · Creative Director · Builder</p>
+    <h1 class="hero-name">
+      <em>Sameen</em><br>
+      Sardar S.
+    </h1>
+    <p class="hero-statement">
+      I build brands and products from zero to revenue —
+      design as the first layer of trust.
+    </p>
+    <div class="hero-status">
+      <div class="status-pill">
+        <div class="pulse"></div>
+        Tenztro Pvt Ltd
+      </div>
+      <div class="status-pill">
+        <div class="pulse"></div>
+        BillOPZ
+      </div>
+      <div class="status-pill">
+        <div class="pulse"></div>
+        LegionFunding
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-footer">
+    <div class="scroll-cue">
+      <div class="scroll-track"></div>
+      Scroll
+    </div>
+    <span class="wordmark">sameen.</span>
+  </div>
+</section>
+
+
+<!-- ─── WORK ──────────────────────────────────────────── -->
+<section class="section-work" id="work">
+  <div class="section-label">Selected Work</div>
+  <ul class="work-list">
+
+    <li>
+      <a class="work-entry" href="#">
+        <span class="work-num">01</span>
+        <div class="work-center">
+          <span class="work-title">TradeFXBook</span>
+          <span class="work-sub">$2K brand identity → $15K webapp → $500/wk marketing retainer</span>
+        </div>
+        <div class="work-right">
+          <span class="work-type">Brand · Web · Marketing</span>
+          <span class="work-year">2023 – Ongoing</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-entry" href="#">
+        <span class="work-num">02</span>
+        <div class="work-center">
+          <span class="work-title">BillOPZ</span>
+          <span class="work-sub">OCR-powered invoice automation for Indian SMEs</span>
+        </div>
+        <div class="work-right">
+          <span class="work-type">Product · SaaS · Design</span>
+          <span class="work-year">2024 – 2025</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-entry" href="#">
+        <span class="work-num">03</span>
+        <div class="work-center">
+          <span class="work-title">LegionFunding</span>
+          <span class="work-sub">Brand identity refresh for a UAE prop trading firm</span>
+        </div>
+        <div class="work-right">
+          <span class="work-type">Brand Identity</span>
+          <span class="work-year">2025</span>
+        </div>
+      </a>
+    </li>
+
+    <li>
+      <a class="work-entry" href="#">
+        <span class="work-num">04</span>
+        <div class="work-center">
+          <span class="work-title">HACKETHIX</span>
+          <span class="work-sub">300 students · 27 colleges · Kerala's largest one-day cybersecurity workshop</span>
+        </div>
+        <div class="work-right">
+          <span class="work-type">Event · Community · Design</span>
+          <span class="work-year">2024</span>
+        </div>
+      </a>
+    </li>
+
+  </ul>
+</section>
+
+
+<!-- ─── ABOUT ─────────────────────────────────────────── -->
+<section class="section-about" id="about">
+  <div class="about-left">
+    <p class="about-label">About</p>
+    <p class="about-bio">
+      Final-year CS student turned founder.
+      <em>Four years building brand identities, one year building a product company.</em>
+      Based in Thiruvananthapuram, building for everywhere.
+    </p>
+  </div>
+  <div class="about-facts">
+    <div class="fact-row">
+      <span class="fact-key">Company</span>
+      <span class="fact-val">Tenztro Private Limited</span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-key">Role</span>
+      <span class="fact-val">Co-founder · Creative Director</span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-key">Education</span>
+      <span class="fact-val">BTech CSE, MCET · KTU 2019</span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-key">Community</span>
+      <span class="fact-val">IEEE CS India Design Lead</span>
+    </div>
+    <div class="fact-row">
+      <span class="fact-key">Currently</span>
+      <span class="fact-val">Shipping BillOPZ · Open to select brand work</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── /NOW BANNER ───────────────────────────────────── -->
+<section class="section-now">
+  <div class="now-left">
+    <p class="now-tag">Right now</p>
+    <p class="now-line">
+      Finishing my degree, shipping a product,<br>
+      and trying to raise a seed round.
+    </p>
+  </div>
+  <a class="now-cta" href="/now">See what I'm working on</a>
+</section>
+
+</body>
+</html>

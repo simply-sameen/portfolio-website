@@ -1,0 +1,13 @@
+{
+  "name": "simply-landing",
+  "version": "1.0.0",
+  "description": "Sameen Sardar S. — portfolio landing page",
+  "scripts": {
+    "dev": "npx serve .",
+    "lint": "npx prettier --check .",
+    "format": "npx prettier --write ."
+  },
+  "keywords": ["portfolio", "landing-page"],
+  "author": "Sameen Sardar",
+  "license": "MIT"
+}
