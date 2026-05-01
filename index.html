@@ -1,628 +1,870 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sameen Sardar S.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simply Landing</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --teal-deep:   #00674F;
-      --teal-mid:    #5BB19C;
-      --grey-light:  #D9D9D9;
-      --dark-bg:     #0B0B0B;
-      --dark-surface:#111111;
-      --dark-rule:   #1C1C1C;
-      --text-dim:    #484848;
-      --text-muted:  #888;
-      --white:       #FFFFFF;
+      --teal-deep: #00674F;
+      --teal-mid: #5BB19C;
+      --grey-light: #D9D9D9;
+      --white: #FFFFFF;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Satoshi', sans-serif;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--dark-bg);
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ─── HERO ───────────────────────────────────────── */
-    .hero {
-      position: relative;
+      width: 100vw;
       height: 100vh;
-      min-height: 620px;
-      background: linear-gradient(
-        105deg,
-        var(--teal-deep) 0%,
-        var(--teal-deep) 15%,
-        var(--teal-mid)  68%,
-        var(--grey-light) 100%
-      );
-      display: flex;
-      flex-direction: column;
       overflow: hidden;
+      background: linear-gradient(98.749deg, rgb(0, 103, 79) 15.179%, rgb(91, 177, 156) 67.275%, rgb(217, 217, 217) 98.251%);
+      font-family: var(--font-sans);
+      color: var(--white);
     }
 
-    /* grain overlay */
-    .hero-grain {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.22;
-      mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)'/%3E%3C/svg%3E");
+    #app {
+      width: 100%;
+      height: 100%;
     }
 
-    /* ─── NAV ─── */
+    /* ── NAV ── */
     .nav {
-      position: relative;
-      z-index: 10;
+      position: fixed;
+      top: 51px;
+      left: 0;
+      right: 0;
+      padding: 0 61px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 2.2rem 3.5rem;
+      z-index: 100;
     }
 
-    .logo-mark {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 5px;
-      width: 26px;
-      height: 26px;
-    }
-
-    .logo-mark span {
-      background: rgba(255,255,255,0.92);
-      border-radius: 3px;
-    }
-
-    .logo-mark span.empty {
-      background: transparent;
+    .nav-brand {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #ffffff;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.8rem;
+      gap: 75px;
       list-style: none;
     }
 
     .nav-links a {
-      color: rgba(255,255,255,0.72);
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      font-weight: 400;
-      transition: color 0.18s;
-    }
-
-    .nav-links a:hover { color: var(--white); }
-
-    /* ─── HERO BODY ─── */
-    .hero-body {
-      position: relative;
-      z-index: 10;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 3.5rem 2rem;
-    }
-
-    .hero-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      font-weight: 400;
-      margin-bottom: 1.8rem;
-    }
-
-    .hero-name {
-      font-family: 'Cormorant', serif;
-      font-size: clamp(76px, 10.5vw, 148px);
-      font-weight: 300;
-      line-height: 0.88;
-      letter-spacing: -0.025em;
-      color: var(--white);
-      margin-bottom: 2.4rem;
-    }
-
-    .hero-name em {
-      font-style: italic;
-    }
-
-    .hero-statement {
-      font-family: 'Cormorant', serif;
-      font-style: italic;
-      font-size: clamp(19px, 2.4vw, 28px);
-      font-weight: 300;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.45;
-      max-width: 520px;
-      margin-bottom: 3rem;
-    }
-
-    .hero-status {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .status-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-family: var(--font-sans);
       font-size: 12px;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.03em;
-      font-weight: 400;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
     }
 
-    .pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.9);
-      position: relative;
-      flex-shrink: 0;
+    .nav-links a:hover {
+      opacity: 0.65;
     }
 
-    .pulse::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.3);
-      animation: ripple 2.4s infinite;
+    .nav-clock {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      white-space: nowrap;
     }
 
-    @keyframes ripple {
-      0%   { transform: scale(0.7); opacity: 0.8; }
-      100% { transform: scale(1.9); opacity: 0; }
-    }
-
-    /* ─── HERO FOOTER ─── */
-    .hero-footer {
-      position: relative;
-      z-index: 10;
+    /* ── FOOTER ── */
+    .footer {
+      position: fixed;
+      bottom: 63px;
+      left: 0;
+      right: 0;
+      padding: 0 65px;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
-      padding: 0 3.5rem 2.8rem;
+      z-index: 100;
     }
 
-    .scroll-cue {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: rgba(255,255,255,0.4);
-      font-size: 11px;
+    .footer-brand {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
       letter-spacing: 0.14em;
-      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
     }
 
-    .scroll-track {
-      width: 48px;
-      height: 1px;
-      background: rgba(255,255,255,0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scroll-track::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: rgba(255,255,255,0.6);
-      animation: scanline 2s infinite ease-in-out;
-    }
-
-    @keyframes scanline {
-      0%   { left: -100%; }
-      100% { left:  100%; }
-    }
-
-    .wordmark {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: rgba(0, 40, 28, 0.55);
-    }
-
-    /* ─── WORK SECTION ─────────────────────────────── */
-    .section-work {
-      background: var(--dark-bg);
-      padding: 7rem 3.5rem 6rem;
-    }
-
-    .section-label {
+    .footer-roles {
       display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      font-weight: 400;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--dark-rule);
-    }
-
-    .work-list {
+      gap: 75px;
       list-style: none;
     }
 
-    .work-entry {
-      display: grid;
-      grid-template-columns: 36px 1fr auto;
-      align-items: baseline;
-      gap: 0 2rem;
-      padding: 2rem 0;
-      border-top: 1px solid var(--dark-rule);
+    .footer-roles li {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+    }
+
+    .footer-date {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    /* ── CONTENT AREA ── */
+    #content {
+      position: absolute;
+      top: 63px;
+      bottom: 63px;
+      left: 0;
+      right: 0;
+    }
+
+    #page-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    #page-content.fade-out {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    /* ── HOME ── */
+    .home-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .home-quote {
+      position: absolute;
+      top: calc(50% - 64px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      text-align: center;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    /* ── WORK ── */
+    .work-page {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .work-accordion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .work-section-heading {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      color: #ffffff;
+      text-align: center;
       cursor: pointer;
-      transition: opacity 0.2s;
       text-decoration: none;
-      color: inherit;
-    }
-
-    .work-entry:last-child {
-      border-bottom: 1px solid var(--dark-rule);
-    }
-
-    .work-entry:hover { opacity: 0.55; }
-
-    .work-num {
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 0.1em;
-      font-weight: 400;
-      padding-top: 6px;
-    }
-
-    .work-center {}
-
-    .work-title {
-      font-family: 'Cormorant', serif;
-      font-size: clamp(32px, 4.5vw, 60px);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--white);
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 30px;
+      transition: opacity 0.15s ease;
     }
 
-    .work-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
+    .work-section-heading:hover {
+      opacity: 0.7;
     }
 
-    .work-right {
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    .work-type {
-      font-size: 11px;
-      color: var(--text-dim);
-      letter-spacing: 0.08em;
-      display: block;
-      text-transform: uppercase;
-    }
-
-    .work-year {
-      font-size: 11px;
-      color: #2d2d2d;
-      display: block;
-      margin-top: 3px;
-    }
-
-    /* ─── ABOUT STRIP ─────────────────────────────── */
-    .section-about {
-      background: var(--dark-surface);
-      padding: 6rem 3.5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-      border-top: 1px solid var(--dark-rule);
-    }
-
-    .about-label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 2rem;
-    }
-
-    .about-bio {
-      font-family: 'Cormorant', serif;
-      font-size: clamp(22px, 2.8vw, 34px);
-      font-weight: 300;
-      line-height: 1.35;
-      color: rgba(255,255,255,0.85);
-    }
-
-    .about-bio em {
-      font-style: italic;
-      color: var(--white);
-    }
-
-    .about-facts {
-      padding-top: 2.2rem;
-    }
-
-    .fact-row {
+    .work-entries {
+      width: 449px;
+      overflow: hidden;
       display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-      border-top: 1px solid var(--dark-rule);
-      font-size: 13px;
+      flex-direction: column;
+      gap: 20px;
+      max-height: 0;
+      margin-bottom: 0;
+      transition: max-height 220ms ease, margin-bottom 220ms ease;
     }
 
-    .fact-row:last-child {
-      border-bottom: 1px solid var(--dark-rule);
+    .work-entries.open {
+      margin-bottom: 30px;
     }
 
-    .fact-key {
-      color: var(--text-dim);
-      letter-spacing: 0.04em;
+    .work-entries-brands.open {
+      margin-bottom: 0;
     }
 
-    .fact-val {
-      color: rgba(255,255,255,0.8);
-      text-align: right;
-    }
-
-    /* ─── NOW BANNER ─────────────────────────────── */
-    .section-now {
-      background: var(--teal-deep);
-      padding: 4rem 3.5rem;
+    .work-entry {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 2rem;
+      line-height: 1;
     }
 
-    .now-left {}
-
-    .now-tag {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 0.8rem;
-    }
-
-    .now-line {
-      font-family: 'Cormorant', serif;
-      font-style: italic;
-      font-size: clamp(24px, 3vw, 38px);
-      font-weight: 300;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.3;
-    }
-
-    .now-cta {
-      flex-shrink: 0;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
+    .work-entry-left {
       display: flex;
       align-items: center;
-      gap: 10px;
-      transition: color 0.18s;
+      gap: 20px;
     }
 
-    .now-cta::after {
-      content: '→';
-      font-size: 16px;
+    .entry-name {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
     }
 
-    .now-cta:hover { color: var(--white); }
+    .entry-desc {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      font-style: italic;
+      color: #d9d9d9;
+      white-space: nowrap;
+    }
 
-    /* ─── RESPONSIVE ─────────────────────────────── */
+    .entry-year {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      font-style: italic;
+      color: #d9d9d9;
+      white-space: nowrap;
+    }
+
+    /* ── ABOUT ── */
+    .about-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .about-heading {
+      position: absolute;
+      top: calc(50% - 215px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      color: #ffffff;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .about-rows {
+      position: absolute;
+      top: calc(50% - 84px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 449px;
+    }
+
+    .about-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 449px;
+      line-height: 1;
+    }
+
+    .about-key {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      font-style: italic;
+      color: #d9d9d9;
+      white-space: nowrap;
+    }
+
+    .about-val {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    /* ── POSTS ── */
+    .posts-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .posts-heading {
+      position: absolute;
+      top: calc(50% - 57px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      color: #ffffff;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .posts-soon {
+      position: absolute;
+      top: calc(50% + 46px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    /* ── CONTACT ── */
+    .contact-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .contact-heading {
+      position: absolute;
+      top: calc(50% - 143px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      color: #ffffff;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .contact-rows {
+      position: absolute;
+      top: calc(50% - 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 449px;
+    }
+
+    .contact-socials {
+      position: absolute;
+      top: calc(50% + 131px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 75px;
+      align-items: center;
+    }
+
+    .contact-socials a {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .contact-socials a:hover {
+      opacity: 0.65;
+    }
+
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
-      .nav             { padding: 1.6rem 1.6rem; }
-      .hero-body       { padding: 0 1.6rem 2rem; }
-      .hero-footer     { padding: 0 1.6rem 2rem; }
-      .section-work    { padding: 5rem 1.6rem 4rem; }
-      .work-right      { display: none; }
-      .section-about   { grid-template-columns: 1fr; padding: 4rem 1.6rem; gap: 2rem; }
-      .section-now     { flex-direction: column; align-items: flex-start; padding: 3rem 1.6rem; }
-      .nav-links li:nth-child(3) { display: none; }
+      /* Nav: two rows */
+      .nav {
+        top: 0;
+        height: auto;
+        padding: 0;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .nav-brand {
+        padding: 14px 1.4rem;
+        flex: 1;
+      }
+
+      .nav-clock {
+        padding: 14px 1.4rem;
+      }
+
+      #nav-centre {
+        order: 3;
+        flex: 0 0 100%;
+        justify-content: center;
+        gap: 2rem;
+        padding: 10px 1.4rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-links a {
+        font-size: 10px;
+        min-height: 36px;
+      }
+
+      /* Footer: two rows */
+      .footer {
+        bottom: 0;
+        height: auto;
+        padding: 0;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .footer-roles {
+        order: -1;
+        flex: 0 0 100%;
+        justify-content: center;
+        gap: 1.8rem;
+        padding: 10px 1.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .footer-roles li {
+        font-size: 9px;
+      }
+
+      .footer-brand {
+        padding: 12px 1.4rem;
+        flex: 1;
+      }
+
+      .footer-date {
+        padding: 12px 1.4rem;
+      }
+
+      /* Content area */
+      #content {
+        top: 88px;
+        bottom: 72px;
+      }
+
+      /* Home */
+      .home-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .home-quote {
+        position: static;
+        transform: none;
+        font-size: clamp(32px, 8vw, 52px);
+        white-space: normal;
+        width: 90vw;
+        line-height: 1.05;
+      }
+
+      /* Work */
+      .work-section-heading {
+        font-size: clamp(36px, 8vw, 64px);
+      }
+
+      .work-entries {
+        width: 90vw;
+      }
+
+      .entry-desc {
+        display: none;
+      }
+
+      /* About */
+      .about-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      .about-heading {
+        position: static;
+        transform: none;
+        font-size: clamp(36px, 8vw, 64px);
+      }
+
+      .about-rows {
+        position: static;
+        transform: none;
+        width: 90vw;
+      }
+
+      .about-row {
+        width: 100%;
+      }
+
+      .about-val {
+        white-space: normal;
+        text-align: right;
+      }
+
+      /* Posts */
+      .posts-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+      }
+
+      .posts-heading {
+        position: static;
+        transform: none;
+        font-size: clamp(32px, 8vw, 64px);
+        white-space: normal;
+        width: 90vw;
+      }
+
+      .posts-soon {
+        position: static;
+        transform: none;
+      }
+
+      /* Contact */
+      .contact-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+
+      .contact-heading {
+        position: static;
+        transform: none;
+        font-size: clamp(36px, 8vw, 64px);
+      }
+
+      .contact-rows {
+        position: static;
+        transform: none;
+        width: 90vw;
+      }
+
+      .contact-socials {
+        position: static;
+        transform: none;
+        gap: 2rem;
+      }
     }
   </style>
 </head>
 <body>
+  <div id="app">
 
-<!-- ─── HERO ─────────────────────────────────────────── -->
-<section class="hero">
-  <div class="hero-grain"></div>
+    <nav class="nav">
+      <span class="nav-brand">SAMEEN SARDAR S</span>
+      <ul class="nav-links" id="nav-centre">
+        <li><a href="#" data-page="work">WORK</a></li>
+        <li><a href="#" data-page="about">ABOUT</a></li>
+        <li><a href="#" data-page="posts">POSTS</a></li>
+        <li><a href="#" data-page="contact">CONTACT</a></li>
+      </ul>
+      <span class="nav-clock" id="clock"></span>
+    </nav>
 
-  <nav class="nav">
-    <div class="logo-mark" aria-label="Logo">
-      <span></span>
-      <span></span>
-      <span class="empty"></span>
-      <span></span>
+    <div id="content">
+      <div id="page-content"></div>
     </div>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="/now">Now</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 
-  <div class="hero-body">
-    <p class="hero-eyebrow">Founder · Creative Director · Builder</p>
-    <h1 class="hero-name">
-      <em>Sameen</em><br>
-      Sardar S.
-    </h1>
-    <p class="hero-statement">
-      I build brands and products from zero to revenue —
-      design as the first layer of trust.
-    </p>
-    <div class="hero-status">
-      <div class="status-pill">
-        <div class="pulse"></div>
-        Tenztro Pvt Ltd
-      </div>
-      <div class="status-pill">
-        <div class="pulse"></div>
-        BillOPZ
-      </div>
-      <div class="status-pill">
-        <div class="pulse"></div>
-        LegionFunding
-      </div>
-    </div>
+    <footer class="footer">
+      <a class="footer-brand" href="https://tenztro.com" target="_blank" rel="noopener">TENZTRO PVT LTD</a>
+      <ul class="footer-roles">
+        <li>FOUNDER</li>
+        <li>CREATIVE DIRECTOR</li>
+        <li>CS UNDERGRAD</li>
+      </ul>
+      <span class="footer-date" id="footer-date"></span>
+    </footer>
+
   </div>
 
-  <div class="hero-footer">
-    <div class="scroll-cue">
-      <div class="scroll-track"></div>
-      Scroll
-    </div>
-    <span class="wordmark">sameen.</span>
-  </div>
-</section>
+  <script>
+    (function () {
 
+      // ── Clock ──────────────────────────────────────────────────────────────
+      function updateClock() {
+        const time = new Date().toLocaleTimeString('en-US', {
+          hour: '2-digit', minute: '2-digit', hour12: true,
+          timeZone: 'Asia/Kolkata'
+        });
+        document.getElementById('clock').textContent = time.replace(':', '.') + ' IST';
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
 
-<!-- ─── WORK ──────────────────────────────────────────── -->
-<section class="section-work" id="work">
-  <div class="section-label">Selected Work</div>
-  <ul class="work-list">
+      // ── Footer date ────────────────────────────────────────────────────────
+      const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+      const today = new Date();
+      document.getElementById('footer-date').textContent =
+        String(today.getDate()).padStart(2, '0') + ' ' +
+        MONTHS[today.getMonth()] + ' ' +
+        today.getFullYear();
 
-    <li>
-      <a class="work-entry" href="#">
-        <span class="work-num">01</span>
-        <div class="work-center">
-          <span class="work-title">TradeFXBook</span>
-          <span class="work-sub">$2K brand identity → $15K webapp → $500/wk marketing retainer</span>
-        </div>
-        <div class="work-right">
-          <span class="work-type">Brand · Web · Marketing</span>
-          <span class="work-year">2023 – Ongoing</span>
-        </div>
-      </a>
-    </li>
+      // ── Nav centre swap ────────────────────────────────────────────────────
+      const navCentre = document.getElementById('nav-centre');
 
-    <li>
-      <a class="work-entry" href="#">
-        <span class="work-num">02</span>
-        <div class="work-center">
-          <span class="work-title">BillOPZ</span>
-          <span class="work-sub">OCR-powered invoice automation for Indian SMEs</span>
-        </div>
-        <div class="work-right">
-          <span class="work-type">Product · SaaS · Design</span>
-          <span class="work-year">2024 – 2025</span>
-        </div>
-      </a>
-    </li>
+      function setHomeNav() {
+        navCentre.innerHTML = `
+          <li><a href="#" data-page="work">WORK</a></li>
+          <li><a href="#" data-page="about">ABOUT</a></li>
+          <li><a href="#" data-page="posts">POSTS</a></li>
+          <li><a href="#" data-page="contact">CONTACT</a></li>`;
+      }
 
-    <li>
-      <a class="work-entry" href="#">
-        <span class="work-num">03</span>
-        <div class="work-center">
-          <span class="work-title">LegionFunding</span>
-          <span class="work-sub">Brand identity refresh for a UAE prop trading firm</span>
-        </div>
-        <div class="work-right">
-          <span class="work-type">Brand Identity</span>
-          <span class="work-year">2025</span>
-        </div>
-      </a>
-    </li>
+      function setWorkNav() {
+        navCentre.innerHTML = `
+          <li><a href="#" data-page="home">HOME</a></li>
+          <li><a href="#" data-page="about">ABOUT</a></li>
+          <li><a href="#" data-page="posts">POSTS</a></li>
+          <li><a href="#" data-page="contact">CONTACT</a></li>`;
+      }
 
-    <li>
-      <a class="work-entry" href="#">
-        <span class="work-num">04</span>
-        <div class="work-center">
-          <span class="work-title">HACKETHIX</span>
-          <span class="work-sub">300 students · 27 colleges · Kerala's largest one-day cybersecurity workshop</span>
-        </div>
-        <div class="work-right">
-          <span class="work-type">Event · Community · Design</span>
-          <span class="work-year">2024</span>
-        </div>
-      </a>
-    </li>
+      function setAboutNav() {
+        navCentre.innerHTML = `
+          <li><a href="#" data-page="work">WORK</a></li>
+          <li><a href="#" data-page="home">HOME</a></li>
+          <li><a href="#" data-page="posts">POSTS</a></li>
+          <li><a href="#" data-page="contact">CONTACT</a></li>`;
+      }
 
-  </ul>
-</section>
+      function setPostsNav() {
+        navCentre.innerHTML = `
+          <li><a href="#" data-page="work">WORK</a></li>
+          <li><a href="#" data-page="about">ABOUT</a></li>
+          <li><a href="#" data-page="home">HOME</a></li>
+          <li><a href="#" data-page="contact">CONTACT</a></li>`;
+      }
 
+      function setContactNav() {
+        navCentre.innerHTML = `
+          <li><a href="#" data-page="work">WORK</a></li>
+          <li><a href="#" data-page="about">ABOUT</a></li>
+          <li><a href="#" data-page="posts">POSTS</a></li>
+          <li><a href="#" data-page="home">HOME</a></li>`;
+      }
 
-<!-- ─── ABOUT ─────────────────────────────────────────── -->
-<section class="section-about" id="about">
-  <div class="about-left">
-    <p class="about-label">About</p>
-    <p class="about-bio">
-      Final-year CS student turned founder.
-      <em>Four years building brand identities, one year building a product company.</em>
-      Based in Thiruvananthapuram, building for everywhere.
-    </p>
-  </div>
-  <div class="about-facts">
-    <div class="fact-row">
-      <span class="fact-key">Company</span>
-      <span class="fact-val">Tenztro Private Limited</span>
-    </div>
-    <div class="fact-row">
-      <span class="fact-key">Role</span>
-      <span class="fact-val">Co-founder · Creative Director</span>
-    </div>
-    <div class="fact-row">
-      <span class="fact-key">Education</span>
-      <span class="fact-val">BTech CSE, MCET · KTU 2019</span>
-    </div>
-    <div class="fact-row">
-      <span class="fact-key">Community</span>
-      <span class="fact-val">IEEE CS India Design Lead</span>
-    </div>
-    <div class="fact-row">
-      <span class="fact-key">Currently</span>
-      <span class="fact-val">Shipping BillOPZ · Open to select brand work</span>
-    </div>
-  </div>
-</section>
+      const navSetters = {
+        home: setHomeNav, work: setWorkNav, about: setAboutNav,
+        posts: setPostsNav, contact: setContactNav
+      };
 
+      // Event delegation — survives innerHTML swaps
+      navCentre.addEventListener('click', e => {
+        const link = e.target.closest('a[data-page]');
+        if (!link) return;
+        e.preventDefault();
+        navigateTo(link.dataset.page);
+      });
 
-<!-- ─── /NOW BANNER ───────────────────────────────────── -->
-<section class="section-now">
-  <div class="now-left">
-    <p class="now-tag">Right now</p>
-    <p class="now-line">
-      Finishing my degree, shipping a product,<br>
-      and trying to raise a seed round.
-    </p>
-  </div>
-  <a class="now-cta" href="/now">See what I'm working on</a>
-</section>
+      // ── Work accordion ─────────────────────────────────────────────────────
+      let workOpenSection = null;
 
+      const WORK_DATA = {
+        ideas: {
+          label: 'Ideas',
+          entries: [
+            ['Upheld',    'Quick Complaints for the Little Guy',          'Pre Seed'],
+            ['Future Me', 'Reality Check from a Study Abroad Counselor', 'Pre Seed'],
+            ['Netfyo',    'Event Management OS',                          'Pre Seed'],
+          ]
+        },
+        companies: {
+          label: 'Companies',
+          entries: [
+            ['BillOPZ',   'GST Compliance Business Suite',           '2025'],
+            ['CampusFlo', 'All Inclusive Campus Management Suite',   '2025'],
+            ['Tenztro',   'Contract SaaS Dev &amp; Design',          '2025'],
+            ['Grafyo',    'Creative Design House',                   '2024'],
+          ]
+        },
+        brands: {
+          label: 'Brands',
+          entries: [
+            ['WWW Bubbly',            'Luxury Indian Sarees',         '2026'],
+            ['LegionFunding',         'Prop Trading Firm',            '2026'],
+            ['TradeFXBook',           'Trade Journaling Platform',    '2026'],
+            ['AICSSYC',               'National Student Congress',    '2025'],
+            ['CSIS',                  'National Symposium',           '2025'],
+            ['Hackethix',             'State Level Workshop',         '2025'],
+            ['IEEE CS Kerala Chapter','40th Anniversary Rebrand',     '2025'],
+            ['Velwet',                'Intimate Wellness Brand',      '2024'],
+          ]
+        }
+      };
+
+      function workEntriesHeight(n) {
+        return n * 12 + (n - 1) * 20;
+      }
+
+      function renderWorkSection(key) {
+        const { label, entries } = WORK_DATA[key];
+        const h = workEntriesHeight(entries.length);
+        const isOpen = workOpenSection === key;
+        const extraClass = key === 'brands' ? ' work-entries-brands' : '';
+        const entriesHtml = entries.map(([name, desc, year]) =>
+          `<div class="work-entry">
+            <div class="work-entry-left">
+              <span class="entry-name">${name}</span>
+              <span class="entry-desc">${desc}</span>
+            </div>
+            <span class="entry-year">${year}</span>
+          </div>`
+        ).join('');
+        return `
+          <a class="work-section-heading" href="#" onclick="toggleWorkSection('${key}'); return false;">${label}</a>
+          <div class="work-entries${isOpen ? ' open' : ''}${extraClass}" style="max-height:${isOpen ? h : 0}px">
+            ${entriesHtml}
+          </div>`;
+      }
+
+      function toggleWorkSection(key) {
+        if (currentPage !== 'work') return;
+        workOpenSection = (workOpenSection === key) ? null : key;
+        pageContent.innerHTML = PAGES.work();
+      }
+
+      window.toggleWorkSection = toggleWorkSection;
+
+      // ── Page render functions ──────────────────────────────────────────────
+      const PAGES = {
+        home: () => `
+          <div class="home-page">
+            <p class="home-quote">Believe you can<br>And you're halfway there.</p>
+          </div>`,
+
+        work: () => `
+          <div class="work-page">
+            <div class="work-accordion">
+              ${renderWorkSection('ideas')}
+              ${renderWorkSection('companies')}
+              ${renderWorkSection('brands')}
+            </div>
+          </div>`,
+
+        about: () => `
+          <div class="about-page">
+            <h2 class="about-heading">About</h2>
+            <div class="about-rows">
+              <div class="about-row"><span class="about-key">Name</span><span class="about-val">Sameen Sardar S</span></div>
+              <div class="about-row"><span class="about-key">Based</span><span class="about-val">Trivandrum, KL, IND</span></div>
+              <div class="about-row"><span class="about-key">Graduating</span><span class="about-val">Mid 2026</span></div>
+              <div class="about-row"><span class="about-key">Awardee</span><span class="about-val">IEEE Rising Star 2025</span></div>
+              <div class="about-row"><span class="about-key">Community</span><span class="about-val">Design Lead, IEEE CS SYP</span></div>
+              <div class="about-row"><span class="about-key">Companies</span><span class="about-val">3 Founded before Graduation</span></div>
+              <div class="about-row"><span class="about-key">Stage</span><span class="about-val">Pre Seed</span></div>
+              <div class="about-row"><span class="about-key">Open to</span><span class="about-val">Seed Conversations · Select Brand Work</span></div>
+            </div>
+          </div>`,
+
+        posts: () => `
+          <div class="posts-page">
+            <h2 class="posts-heading">Writing Some Posts</h2>
+            <p class="posts-soon">Coming Soon</p>
+          </div>`,
+
+        contact: () => `
+          <div class="contact-page">
+            <h2 class="contact-heading">Contact</h2>
+            <div class="contact-rows">
+              <div class="about-row"><span class="about-key">Name</span><span class="about-val">Sameen Sardar S</span></div>
+              <div class="about-row"><span class="about-key">Phone</span><span class="about-val"><a href="tel:+917511160055" style="color:inherit;text-decoration:none;">+91 75111 60055</a></span></div>
+              <div class="about-row"><span class="about-key">Email</span><span class="about-val"><a href="mailto:sameensardar@gmail.com" style="color:inherit;text-decoration:none;">sameensardar@gmail.com</a></span></div>
+            </div>
+            <div class="contact-socials">
+              <a href="https://www.linkedin.com/in/sameen-sardar" target="_blank" rel="noopener">LINKEDIN</a>
+              <a href="https://x.com/sameensardars" target="_blank" rel="noopener">X</a>
+              <a href="https://github.com/simply-sameen" target="_blank" rel="noopener">GITHUB</a>
+            </div>
+          </div>`,
+      };
+
+      // ── Router ─────────────────────────────────────────────────────────────
+      const pageContent = document.getElementById('page-content');
+      let currentPage   = null;
+      let transitioning = false;
+
+      function navigateTo(page) {
+        if (!PAGES[page] || page === currentPage || transitioning) return;
+        transitioning = true;
+
+        pageContent.classList.add('fade-out');
+
+        setTimeout(() => {
+          navSetters[page]();
+          pageContent.innerHTML = PAGES[page]();
+          currentPage = page;
+
+          pageContent.getBoundingClientRect(); // force reflow
+          pageContent.classList.remove('fade-out');
+          transitioning = false;
+        }, 220);
+      }
+
+      // ── Initial render ─────────────────────────────────────────────────────
+      navigateTo('home');
+
+    })();
+  </script>
 </body>
 </html>

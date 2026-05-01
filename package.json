@@ -1,13 +1,20 @@
 {
-  "name": "simply-landing",
+  "name": "sameen-portfolio",
   "version": "1.0.0",
-  "description": "Sameen Sardar S. — portfolio landing page",
+  "description": "Personal portfolio of Sameen Sardar S — Founder, Creative Director, CS Undergrad",
   "scripts": {
-    "dev": "npx serve .",
-    "lint": "npx prettier --check .",
-    "format": "npx prettier --write ."
+    "dev": "npx serve . -l 3000",
+    "build": "echo 'Static site — no build step required'",
+    "preview": "npx serve . -l 4000"
   },
-  "keywords": ["portfolio", "landing-page"],
-  "author": "Sameen Sardar",
-  "license": "MIT"
+  "keywords": [
+    "portfolio",
+    "design",
+    "founder"
+  ],
+  "author": "Sameen Sardar S",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
 }
